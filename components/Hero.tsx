@@ -92,11 +92,8 @@ export default function Hero() {
             <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
           </a>
           <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
+            href="/Aashni_Khurana_Resume.pdf"
+            download="Aashni_Khurana_Resume.pdf"
             className="flex items-center gap-2 px-7 py-3 rounded-full border border-white/15 hover:border-blue-500/50 text-white/70 hover:text-white text-sm font-semibold transition-all duration-200 backdrop-blur-sm"
           >
             <Download className="w-4 h-4" />

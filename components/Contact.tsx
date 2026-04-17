@@ -4,35 +4,7 @@ import { resumeData } from "@/lib/data";
 import { Mail, ExternalLink, MapPin, Download } from "lucide-react";
 
 export default function Contact() {
-  const { basics, experience, education, skills, achievements, certifications } = resumeData;
-
-  const generateResumeText = () => {
-    let text = `${basics.name}\n${basics.title} | ${basics.currentOrg}\n${basics.location}\n${basics.email}\n${basics.linkedin}\n\n`;
-    text += `SUMMARY\n${basics.summary}\n\n`;
-    text += `EXPERIENCE\n`;
-    experience.forEach((job) => {
-      text += `\n${job.role} | ${job.company}\n${job.dates} | ${job.location}\n`;
-      job.bullets.forEach((b) => { text += `• ${b}\n`; });
-    });
-    text += `\nEDUCATION\n`;
-    education.forEach((edu) => { text += `${edu.degree} | ${edu.institution} | ${edu.dates}\n`; });
-    text += `\nCERTIFICATIONS\n`;
-    certifications.forEach((c) => { text += `• ${c.title}\n`; });
-    text += `\nKEY SKILLS\n`;
-    skills.forEach((g) => { text += `${g.category}: ${g.items.join(", ")}\n`; });
-    return text;
-  };
-
-  const handleDownload = () => {
-    const text = generateResumeText();
-    const blob = new Blob([text], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "Aashni_Khurana_Resume.txt";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
+  const { basics } = resumeData;
 
   return (
     <section id="contact" className="py-24 px-4 relative">
@@ -91,17 +63,18 @@ export default function Contact() {
           {basics.location}
         </motion.div>
 
-        <motion.button
+        <motion.a
+          href="/Aashni_Khurana_Resume.pdf"
+          download="Aashni_Khurana_Resume.pdf"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.4 }}
-          onClick={handleDownload}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:border-blue-500/40 text-white/40 hover:text-white/70 text-xs font-medium transition-all duration-200"
         >
           <Download className="w-3.5 h-3.5" />
-          Download Resume (.txt)
-        </motion.button>
+          Download Resume (PDF)
+        </motion.a>
 
         {/* Footer */}
         <motion.p
